@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Capture & Share</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Capture & Share</h1>
+        
+        <div class="camera-container">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+            <div class="controls">
+                <button id="start-camera"><i class="fas fa-camera"></i> Start Camera</button>
+                <button id="capture-btn"><i class="fas fa-camera-retro"></i> Capture Photo</button>
+                <button id="record-btn"><i class="fas fa-video"></i> Start Recording</button>
+                <button id="stop-record-btn" disabled><i class="fas fa-stop"></i> Stop Recording</button>
+            </div>
+        </div>
+        
+        <div class="preview">
+            <h2>Preview</h2>
+            <div id="photo-preview"></div>
+            <video id="video-preview" controls></video>
+        </div>
+        
+        <div class="location-info">
+            <h3>Location Information</h3>
+            <p id="location-data">Location not detected</p>
+        </div>
+        
+        <div class="share-options">
+            <h3>Share Options</h3>
+            <button id="save-btn"><i class="fas fa-save"></i> Save Locally</button>
+            <button id="email-btn"><i class="fas fa-envelope"></i> Email</button>
+            <button id="whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            <button id="sms-btn"><i class="fas fa-sms"></i> SMS</button>
+            <button id="instagram-btn"><i class="fab fa-instagram"></i> Instagram</button>
+            <button id="facebook-btn"><i class="fab fa-facebook"></i> Facebook</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
