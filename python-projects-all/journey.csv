@@ -1,0 +1,8 @@
+age,gender,destination,travel_mode,season,health_issues,issue
+25,Male,Goa,Flight,Summer,No,Flight Delay
+32,Female,Manali,Bus,Winter,Yes,Health Issues
+40,Male,Dubai,Flight,Summer,No,Lost Baggage
+23,Female,Goa,Train,Monsoon,No,Bad Weather
+30,Male,Manali,Car,Winter,Yes,No Issue
+28,Female,Dubai,Flight,Summer,No,Lost Baggage
+35,Male,Europe,Flight,Winter,No,Flight Delay

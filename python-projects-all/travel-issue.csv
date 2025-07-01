@@ -1,0 +1,21 @@
+age,gender,destination,travel_mode,season,health_issues,issue
+25,Male,Paris,Airplane,Summer,None,No issues
+42,Female,Tokyo,Train,Winter,Asthma,Motion sickness
+33,Male,New York,Airplane,Fall,None,Flight delay
+19,Female,London,Bus,Spring,None,Lost luggage
+55,Male,Sydney,Airplane,Summer,Diabetes,Jet lag
+28,Female,Rome,Train,Spring,None,Seat discomfort
+37,Male,Berlin,Car,Winter,Hypertension,Car trouble
+22,Female,Barcelona,Bus,Summer,None,Overcrowding
+45,Male,Dubai,Airplane,Fall,None,Flight cancellation
+31,Female,Amsterdam,Train,Spring,Anxiety,Motion sickness
+29,Male,Singapore,Airplane,Summer,None,No issues
+50,Female,Vienna,Train,Winter,Arthritis,Temperature issues
+26,Male,Prague,Bus,Fall,None,Long delays
+34,Female,Athens,Car,Spring,None,No issues
+40,Male,Beijing,Airplane,Winter,None,Lost passport
+23,Female,Madrid,Train,Summer,None,No issues
+48,Male,Cairo,Airplane,Fall,Heart condition,Medical emergency
+30,Female,Stockholm,Bus,Winter,None,Vehicle breakdown
+36,Male,Bangkok,Airplane,Spring,None,No issues
+27,Female,Lisbon,Train,Summer,None,No issues
