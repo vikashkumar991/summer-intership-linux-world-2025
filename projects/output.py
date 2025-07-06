@@ -1,54 +1,44 @@
-import streamlit as st
-import tweepy
 import os
+from twilio.rest import Client
 
-CONSUMER_KEY = os.environ.get("TWITTER_CONSUMER_KEY")
-CONSUMER_SECRET = os.environ.get("TWITTER_CONSUMER_SECRET")
-ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
-ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
+def send_sms(to_number, body):
+    """
+    Sends an SMS message via Twilio.
 
-if not all([CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET]):
-    st.error("Twitter API keys are not set. Please set TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN, and TWITTER_ACCESS_TOKEN_SECRET environment variables.")
-    st.stop()
+    Args:
+        to_number (str): The recipient's phone number (e.g., "+1234567890").
+        body (str): The message body.
+    """
+    # Your Account SID and Auth Token from twilio.com/console
+    account_sid = os.environ.get("TWILIO_ACCOUNT_SID")
+    auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
+    twilio_phone_number = os.environ.get("TWILIO_PHONE_NUMBER")
 
-try:
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-    api = tweepy.API(auth)
-    api.verify_credentials()
-    st.success("Successfully authenticated with Twitter!")
-except tweepy.TweepyException as e:
-    st.error(f"Error authenticating with Twitter. Please check your API keys and internet connection: {e}")
-    st.stop()
+    if not all([account_sid, auth_token, twilio_phone_number]):
+        print("Error: Twilio credentials (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER) not set as environment variables.")
+        return
 
-st.title("Twitter Post Sender")
-st.write("Enter your message below and click 'Send Tweet' to post it on Twitter.")
+    client = Client(account_sid, auth_token)
 
-if 'tweet_message_input' not in st.session_state:
-    st.session_state.tweet_message_input = ""
+    try:
+        message = client.messages.create(
+            to=to_number,
+            from_=twilio_phone_number,
+            body=body
+        )
+        print(f"Message SID: {message.sid}")
+        print(f"Message status: {message.status}")
+    except Exception as e:
+        print(f"Error sending message: {e}")
 
-tweet_message = st.text_area(
-    "Your Tweet Message:",
-    max_chars=280,
-    height=150,
-    help="Tweets are limited to 280 characters.",
-    key="tweet_input_area",
-    value=st.session_state.tweet_message_input
-)
+if __name__ == "__main__":
+    # Example usage:
+    # Make sure to set the following environment variables:
+    # TWILIO_ACCOUNT_SID
+    # TWILIO_AUTH_TOKEN
+    # TWILIO_PHONE_NUMBER
 
-if st.button("Send Tweet"):
-    if tweet_message:
-        try:
-            api.update_status(tweet_message)
-            st.success("Tweet sent successfully!")
-            st.balloons()
-            st.write(f"You tweeted: \"{tweet_message}\"")
-            st.session_state.tweet_message_input = ""
-            st.experimental_rerun()
-        except tweepy.TweepyException as e:
-            st.error(f"Error sending tweet: {e}")
-    else:
-        st.warning("Please enter a message before sending your tweet.")
-
-st.markdown("---")
-st.markdown("Developed with using Streamlit and Tweepy")
+    # Replace with the actual recipient number and message
+    # recipient_number = "+15551234567"
+    # message_body = "Hello from your Python Twilio SMS sender!"
+    # send_sms(recipient_number, message_body)
