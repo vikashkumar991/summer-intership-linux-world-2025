@@ -1,0 +1,1 @@
+F = Gm1m2/r2 ;notepad.exe gravity_formula.txt
